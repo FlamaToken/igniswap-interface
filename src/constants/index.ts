@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@igniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { fortmatic, injected, binanceinjected, portis, walletconnect, walletlink } from '../connectors'
 
 export const ROUTER_ADDRESS = '0x22902B3604CafeA0fCAAe289241Bf20a62F37104'
 
@@ -123,6 +123,14 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     color: '#010101',
     primary: true
+  },
+  BINANCE: {
+    connector: binanceinjected,
+    name: 'Binance Chain Wallet',
+    iconName: 'bnb.svg',
+    description: 'A Crypto Wallet for Binance Smart Chain',
+    href: null,
+    color: '#F9A825'
   },
   METAMASK: {
     connector: injected,

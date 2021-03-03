@@ -16,6 +16,14 @@ interface Window {
   web3?: {}
 }
 
+interface Window {
+  BinanceChain?: {
+    on?: (...args: any[]) => void
+    removeListener?: (...args: any[]) => void
+  }
+  web3?: {}
+}
+
 declare module 'content-hash' {
   declare function decode(x: string): string
   declare function getCodec(x: string): string

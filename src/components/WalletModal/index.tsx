@@ -6,8 +6,9 @@ import { isMobile } from 'react-device-detect'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import MetamaskIcon from '../../assets/images/metamask.png'
+import BinanceIcon from '../../assets/images/bnb.svg'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { fortmatic, injected, portis } from '../../connectors'
+import { fortmatic, injected, binanceinjected, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { SUPPORTED_WALLETS } from '../../constants'
 import usePrevious from '../../hooks/usePrevious'
@@ -214,7 +215,7 @@ export default function WalletModal({
           return null
         }
 
-        if (!window.web3 && !window.ethereum && option.mobile) {
+        if (!window.web3 && !window.ethereum && !window.BinanceChain && option.mobile) {
           return (
             <Option
               onClick={() => {
@@ -253,7 +254,7 @@ export default function WalletModal({
           } else {
             return null //dont want to return install twice
           }
-        }
+        }       
         // don't return metamask if injected provider isn't metamask
         else if (option.name === 'MetaMask' && !isMetamask) {
           return null
@@ -261,6 +262,28 @@ export default function WalletModal({
         // likewise for generic
         else if (option.name === 'Injected' && isMetamask) {
           return null
+        }
+      }
+
+      // overwrite injected when needed
+      if (option.connector === binanceinjected) {
+        // don't show injected if there's no injected provider
+        if (!(window.web3 || window.BinanceChain)) {
+          if (option.name === 'Binance Chain Wallet') {
+            return (
+              <Option
+                id={`connect-${key}`}
+                key={key}
+                color={'#F9A825'}
+                header={'Install Binance Chain Wallet'}
+                subheader={null}
+                link={'https://docs.binance.org/smart-chain/wallet/binance.html'}
+                icon={BinanceIcon}
+              />
+            )
+          } else {
+            return null //dont want to return install twice
+          }
         }
       }
 
@@ -298,7 +321,7 @@ export default function WalletModal({
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5>Please connect to the appropriate Ethereum network.</h5>
+              <h5>Please connect to the appropriate Binance/Ethereum network.</h5>
             ) : (
               'Error connecting. Try refreshing the page.'
             )}
