@@ -1716,6 +1716,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@igniswap/default-token-list@https://github.com/FlamaToken/default-token-list.git#igniswap":
+  version "2.0.0"
+  resolved "https://github.com/FlamaToken/default-token-list.git#2b3d84c600d61a1e302254565f7a7bf10707b4f7"
+
 "@igniswap/sdk@https://github.com/flamatoken/igniswap-sdk.git#igniswap":
   version "1.0.7"
   resolved "https://github.com/flamatoken/igniswap-sdk.git#42ad9eeec0ccad187af9fa5e77335fca5d3615c6"
@@ -2711,11 +2715,6 @@
     lodash "^4.17.15"
     semver "^7.3.2"
     tsutils "^3.17.1"
-
-"@uniswap/default-token-list@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/default-token-list/-/default-token-list-2.0.0.tgz#095b4c22635e532c817c3ba70e8838d8bd699716"
-  integrity sha512-P37PqBtUjEB9DIRFfmEsgougkV0555JQKiGPISeN9UFk1UgCQM5sg6+bBaShiyaqEpdtttAaBFI1QESCzPGvXw==
 
 "@uniswap/governance@^1.0.2":
   version "1.0.2"

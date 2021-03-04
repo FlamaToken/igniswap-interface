@@ -7,6 +7,10 @@ declare module 'jazzicon' {
 declare module 'fortmatic'
 
 interface Window {
+  BinanceChain?: {
+    on?: (...args: any[]) => void
+    removeListener?: (...args: any[]) => void
+  }
   ethereum?: {
     isMetaMask?: true
     on?: (...args: any[]) => void
@@ -16,13 +20,6 @@ interface Window {
   web3?: {}
 }
 
-interface Window {
-  BinanceChain?: {
-    on?: (...args: any[]) => void
-    removeListener?: (...args: any[]) => void
-  }
-  web3?: {}
-}
 
 declare module 'content-hash' {
   declare function decode(x: string): string

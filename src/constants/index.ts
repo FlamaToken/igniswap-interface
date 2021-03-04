@@ -20,7 +20,8 @@ export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597
 export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+export const WBTC = new Token(ChainId.MAINNET, '0x2926e9a24f3f13f00a8d867ba99f23c0a8b00f29', 8, 'WBTC', 'Wrapped BTC')
+export const TESTT = new Token(ChainId.BSCTESTNET, '0x2926e9a24f3f13f00a8d867ba99f23c0a8b00f29', 18, 'TestT', 'TT')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -66,7 +67,9 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]]
+  
 }
 
 /**
@@ -76,19 +79,24 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {
     [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+  },
+  [ChainId.BSCTESTNET]: {
+    [TESTT.address]: [WETH[ChainId.BSCTESTNET]]
   }
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -99,7 +107,14 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     ],
     [USDC, USDT],
     [DAI, USDT]
+  ],
+  [ChainId.BSCTESTNET]: [
+    [
+      new Token(ChainId.BSCTESTNET, '0x615446C0Fd5eA8A5FD7fb763f3FC2C58774474F3', 8, 'BUSD', 'BUSD'),
+      new Token(ChainId.BSCTESTNET, '0x2926e9a24f3f13f00a8d867ba99f23c0a8b00f29', 8, 'Test', 'TT')
+    ]
   ]
+  
 }
 
 export interface WalletInfo {
